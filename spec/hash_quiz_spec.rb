@@ -13,38 +13,47 @@ describe Hash do
     }
   end
   
-  context 'when "heteml" exists' do
+  context '1. when "heteml" exists' do
     describe 'Hash#has_key?' do
-      it 'returns true' do
-        hash.has_key?('heteml').should be_true
-      end
+      it { hash.has_key?('heteml').should be_true }
     end
 
     describe 'Hash#key?' do
-      it 'returns true' do
-        hash.key?('heteml').should be_true
-      end
+      it { hash.key?('heteml').should be_true }
     end
 
     describe 'Hash#include?' do
-      it 'returns true' do
-        hash.include?('heteml').should be_true
-      end
+      it { hash.include?('heteml').should be_true }
     end
 
     describe 'Hash#member?' do
-      it 'returns true' do
-        hash.member?('heteml').should be_true
-      end
+      it { hash.member?('heteml').should be_true }
     end
-    
+
     describe 'Hash["heteml"]' do
-      it 'returns true' do
-        hash["heteml"].should be_true
+      it { hash["heteml"].should be_true }
+    end
+  end
+
+  context '2. when "kaba" exists' do
+    describe 'Hash#has_value?' do
+      it { hash.has_value?('kaba').should be_true }
+    end
+
+    describe 'Hash#value?' do
+      it { hash.value?('kaba').should be_true }
+    end
+  end
+
+  context '3. delete "heteml" in hash' do
+    describe 'Hash#delete' do
+      it 'delete heteml' do hash.delete('heteml')
+        hash == {"muumuu" => "kuma", "lolipop" => "ozisan"}      
       end
     end
   end
 
-  context 'when "kaba" exists' do
+  context '4. return the "unknwon" when access a nonexistent key' do
+  
   end
 end
