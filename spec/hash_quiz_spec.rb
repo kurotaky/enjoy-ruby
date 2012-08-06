@@ -71,11 +71,34 @@ describe Hash do
     end
   end
 
-  context '6. output iterator' do
-    describe 'Hash#each' do
+  context  '6. hash key output iterator' do
+    describe 'Hash#each_key' do
       it 'output iterator' do
+        $stdout = StringIO.
         hash.each_key { |key| puts "#{key}"}
+        "heteml muumuu lolipop"
       end
     end
   end
+
+  context '7. returns an arrays with all value of the hash' do
+    describe 'Hash#values' do
+      it 'returns an arrays' do
+        hash.values.should eq(["kaba", "kuma", "ozisan"])
+      end
+    end
+  end
+
+  context  '8. hash value output iterator' do
+    describe 'Hash#each_value' do
+      it 'output iterator' do
+        hash.each_value { |value| puts "#{value}"}
+        "heteml muumuu lolipop"
+      end
+    end
+  end
+
+
+
+
 end
