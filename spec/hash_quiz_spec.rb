@@ -12,6 +12,28 @@ describe Hash do
       "lolipop" => "ozisan",
     }
   end
+
+  let(:another_hash) do
+    { 
+      "hatena" => "cinnamon",
+      "oracle" => "candy",
+    }
+  end
+
+  let(:sqale) do
+    {
+      "production" => {
+        "app" => [
+                  "app001.sqale.jp",
+                  "app002.sqale.jp",
+                 ],
+        "users" => [
+                    "users001.sqale.jp",
+                    "users002.sqale.jp",
+                   ],
+      }
+    }
+  end
   
   context '1. when "heteml" exists' do
     describe 'Hash#has_key?("heteml")' do
@@ -74,9 +96,11 @@ describe Hash do
   context  '6. hash key output iterator' do
     describe 'Hash#each_key' do
       it 'output iterator' do
-        $stdout = StringIO.
+        $stdout = StringIO.new
         hash.each_key { |key| puts "#{key}"}
-        "heteml muumuu lolipop"
+        out = $stdout.string
+        $stdout = STDOUT
+        out.should == "heteml\nmuumuu\nlolipop\n"
       end
     end
   end
@@ -92,13 +116,67 @@ describe Hash do
   context  '8. hash value output iterator' do
     describe 'Hash#each_value' do
       it 'output iterator' do
+        $stdout = StringIO.new
         hash.each_value { |value| puts "#{value}"}
-        "heteml muumuu lolipop"
+        out = $stdout.string
+        $stdout = STDOUT
+        out.should == "kaba\nkuma\nozisan\n"
       end
     end
   end
 
+  context  '9. hash value & key output iterator' do
+    describe 'Hash#each' do
+      it 'output iterator' do
+        $stdout = StringIO.new
+        hash.each { |key, value| puts "#{key} #{value}"}
+        out = $stdout.string
+        $stdout = STDOUT
+        out.should == "heteml kaba\nmuumuu kuma\nlolipop ozisan\n"
+      end
+    end
 
+    describe 'Hash#each_pair' do
+      it 'output iterator' do
+        $stdout = StringIO.new
+        hash.each_pair { |key, value| puts "#{key} #{value}"}
+        out = $stdout.string
+        $stdout = STDOUT
+        out.should == "heteml kaba\nmuumuu kuma\nlolipop ozisan\n"
+      end
+    end
+  end
+
+  context  '10. combine hash with another_hash' do
+    describe 'Hash#merge' do
+      it 'combine hash & another_hash' do
+        hash.merge(another_hash).should eq({"heteml"=>"kaba",
+                                             "muumuu"=>"kuma",
+                                             "lolipop"=>"ozisan",
+                                             "hatena"=>"cinnamon",
+                                             "oracle"=>"candy"})
+      end
+    end
+
+
+    describe 'Hash#update' do
+      it 'combine hash & another_hash' do
+        hash.update(another_hash).should eq({"heteml"=>"kaba",
+                                             "muumuu"=>"kuma",
+                                             "lolipop"=>"ozisan",
+                                             "hatena"=>"cinnamon",
+                                             "oracle"=>"candy"})
+      end
+    end
+  end
+
+  pending '11. Access to complex structures' do
+    describe 'Hash#merge' do
+      it 'combine hash & another_hash' do
+     
+      end
+    end
+  end
 
 
 end
