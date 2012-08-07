@@ -228,7 +228,7 @@ end
 #     Hash#update
 #       combine hash & another_hash
 #   11. Access to complex structures
-#     Hash#merge
+#     Hash#[][][]
 #       returns app001.sqale.jp
 #       returns users002.sqale.jp
 
