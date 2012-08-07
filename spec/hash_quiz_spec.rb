@@ -168,7 +168,7 @@ describe Hash do
   end
 
   context '11. Access to complex structures' do
-    describe 'Hash#merge' do
+    describe 'Hash[][][]' do
       it 'returns app001.sqale.jp' do
         sqale["production"]["app"][0].should eq("app001.sqale.jp")
       end
